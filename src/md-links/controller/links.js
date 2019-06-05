@@ -1,19 +1,15 @@
 const fs = require('fs');
 const path = require('path')
-
+/*
 export const checkRouteIsFile = (route)  =>{
-  return fs.statSync(route, (err,data)=>{
-    if(err)
-
-  }).isFile()
+  return fs.statSync(route).isFile()
 }
-,res=>conso
 
 export const checkRouteIsDirectory = (route)  =>{
   return fs.statSync(route).isDirectory()
 }
 
-/*
+
 LINUX
 console.log(checkRouteIsFile('/home/leslie/Documents/LIM009-fe-md-links/src/md-links/index.js'))
 
@@ -24,23 +20,42 @@ console.log(checkRouteIsFile("E:/LABORATORIA/LIM009-fe-md-links/src/md-links"))
 console.log(checkRouteIsDirectory("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/index.js"))
 console.log(checkRouteIsDirectory("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/"))*/
 
-/*
-const getPathsOfDirectory = (route)=>{
-  let routesDirectory = []; 
+
+const getPathsOfRoute = (route)=>{
+  let allRoutes = []; 
   if(fs.statSync(route).isFile()){    
-    routesDirectory.push(route)
+    allRoutes.push(route)
   }  
   else{
     fs.readdirSync(route).forEach(paths =>{     
       let file = path.join(route, paths);
-      routesDirectory = routesDirectory.concat(getPathsOfDirectory(file))
+      allRoutes =allRoutes.concat(getPathsOfRoute(file))
     });
   } 
-  return routesDirectory
+  // solo links .md
+  const filesMd = allRoutes.filter((file => path.extname(file) === '.md'))  
+  return filesMd;
 }
-*/
+
+//console.log(getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/'))
 
 
+
+const getLinksMd = (route) => {
+  let linksFilesMd = [];
+  route.forEach(path=>{
+    let readFile =fs.readFileSync(path,'utf8')
+    console.log(readFile)
+  })
+
+}
+const ruta = getPathsOfRoute("E:/LABORATORIA/LIM009-fe-md-links/README.md")
+getLinksMd(ruta)
+
+
+
+
+/*
 const getPathsOfDirectory = (route)=>{  
   let routesDirectory = [];
   fs.readdirSync(route).forEach(paths =>{     
@@ -51,14 +66,5 @@ const getPathsOfDirectory = (route)=>{
       routesDirectory = routesDirectory.concat(getPathsOfDirectory(file))    
     }    
   })
-
   return routesDirectory
-}
-
-
-
-console.log(getPathsOfDirectory ('/home/leslie/Documents/LIM009-fe-md-links/'))
-
-
-
-
+}*/
