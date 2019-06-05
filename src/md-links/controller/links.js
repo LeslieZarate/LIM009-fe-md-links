@@ -54,8 +54,6 @@ getLinksMd(ruta)
 
 
 
-
-/*
 const getPathsOfDirectory = (route)=>{  
   let routesDirectory = [];
   fs.readdirSync(route).forEach(paths =>{     
