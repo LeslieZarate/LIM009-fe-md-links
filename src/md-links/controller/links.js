@@ -1,27 +1,39 @@
-const fs = require('fs');
-const path = require('path')
+//const fs = require('fs');
+//const path = require('path')
+
+import fs from 'fs'
+import path from 'path'
+
+const fsPromises = fs.promises;
+
 /*
 export const checkRouteIsFile = (route)  =>{
   return fs.statSync(route).isFile()
 }
-
 export const checkRouteIsDirectory = (route)  =>{
   return fs.statSync(route).isDirectory()
 }
 
-
 LINUX
 console.log(checkRouteIsFile('/home/leslie/Documents/LIM009-fe-md-links/src/md-links/index.js'))
-
 WINDOW
 console.log(checkRouteIsFile("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/index.js"))
 console.log(checkRouteIsFile("E:/LABORATORIA/LIM009-fe-md-links/src/md-links"))
-
 console.log(checkRouteIsDirectory("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/index.js"))
 console.log(checkRouteIsDirectory("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/"))*/
 
 
-const getPathsOfRoute = (route)=>{
+
+const checkRouteIsFile = (route)  =>{
+  return fsPromises.stat(route)
+  .then(res => console.log(res.isDirectory()))
+}
+
+//checkRouteIsFile('/home/leslie/Documents/LIM009-fe-md-links/src/md-links/index.js')
+
+
+
+const getPathsOfRoute = (route,)=>{
   let allRoutes = []; 
   if(fs.statSync(route).isFile()){    
     allRoutes.push(route)
@@ -33,11 +45,11 @@ const getPathsOfRoute = (route)=>{
     });
   } 
   // solo links .md
-  const filesMd = allRoutes.filter((file => path.extname(file) === '.md'))  
+  const filesMd = allRoutes.filter((file => path.extname(file) === '.md')) 
   return filesMd;
 }
 
-//console.log(getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/'))
+//console.log(getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/node_modules'))
 
 
 
@@ -49,11 +61,12 @@ const getLinksMd = (route) => {
   })
 
 }
+/*
 const ruta = getPathsOfRoute("E:/LABORATORIA/LIM009-fe-md-links/README.md")
-getLinksMd(ruta)
+getLinksMd(ruta)*/
 
 
-
+/*
 const getPathsOfDirectory = (route)=>{  
   let routesDirectory = [];
   fs.readdirSync(route).forEach(paths =>{     
