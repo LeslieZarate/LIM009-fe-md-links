@@ -3,7 +3,6 @@
 
 import fs from 'fs'
 import path from 'path'
-
 const fsPromises = fs.promises;
 
 /*
@@ -26,14 +25,16 @@ console.log(checkRouteIsDirectory("E:/LABORATORIA/LIM009-fe-md-links/src/md-link
 
 const checkRouteIsFile = (route)  =>{
   return fsPromises.stat(route)
-  .then(res => console.log(res.isDirectory()))
+  
 }
+checkRouteIsFile("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/index.js")
+//.then(res => console.log(res.isDirectory())
 
 //checkRouteIsFile('/home/leslie/Documents/LIM009-fe-md-links/src/md-links/index.js')
 
 
 
-const getPathsOfRoute = (route,)=>{
+const getPathsOfRoute = (route)=>{
   let allRoutes = []; 
   if(fs.statSync(route).isFile()){    
     allRoutes.push(route)

@@ -1,5 +1,5 @@
-import {validatePathAbsolute} from "../src/md-links/controller/path.js";
-const path = require('path')
+import path from 'path'
+import {validatePathAbsolute} from "../src/controller/path.js";
 
 describe('validatePathAbsolute',()=>{
   it('Deberia ser una funcion',()=>{
@@ -7,10 +7,10 @@ describe('validatePathAbsolute',()=>{
 	});
 
 	it('Deberia retornar la misma ruta si es absoluta',()=>{
-		expect(validatePathAbsolute(path.resolve('./src//md-links/index.js'))).toBe(path.resolve('./src/md-links/index.js'));
+		expect(validatePathAbsolute(path.resolve('./src/index.js'))).toBe(path.resolve('./src/index.js'));
 	});
 
 	it('Deberia retornar la ruta convertida en absoluta si esta es relativa',()=>{
-		expect(validatePathAbsolute('./src/md-links/index.js')).toBe(path.resolve('./src/md-links/index.js'));
+		expect(validatePathAbsolute('./src/index.js')).toBe(path.resolve('./src/index.js'));
 	});
 });
