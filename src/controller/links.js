@@ -1,50 +1,102 @@
+/*import fs from 'fs'
+import path from 'path'*/
+
+
+
 const fs = require('fs');
-const path = require('path');
-/*
-import fs from 'fs'         
-import path from 'path' */
+const path = require('path')
+const fsPromises = fs.promises;
 
- const checkRouteIsFile = (route)  =>{
-  return fs.statSync(route).isFile()
-}
-/*
-export const checkRouteIsDirectory = (route)  =>{
-  return fs.statSync(route).isDirectory()
+export const checkRouteIsFile = (route) =>{
+  return fsPromises.stat(route).then(res=> res.isFile())
 }
 
-//console.log(checkRouteIsFile('/home/leslie/Documents/LIM009-fe-md-links/src/md-links/index.js'))
-//console.log(checkRouteIsDirectory("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/index.js"))
-*/
- const getPathsOfRoute = (route)=>{
-  let allRoutes = []; 
-  if(checkRouteIsFile(route)){    
-    allRoutes.push(route)
+export const readDirectory = (route) => {
+  return fsPromises.readdir(route)
+}
+
+export const getPathsOfRoute = async (route)=> {
+  let allRoutes = [];
+  const checkRoute = await checkRouteIsFile(route);  
+  if(checkRoute){  
+    allRoutes.push(route); 
   }  
-  else{
-    fs.readdirSync(route).forEach(paths =>{     
-      let file = path.join(route, paths);
-      allRoutes =allRoutes.concat(getPathsOfRoute(file))
-    });
-  } 
-  // solo links .md
-  const filesMd = allRoutes.filter((file => path.extname(file) === '.md')) 
-  return filesMd;
+  else{    
+    const readDirector  = await readDirectory(route)    
+    readDirector.forEach(paths=> {       
+      let file = path.join(route, paths)
+      allRoutes = allRoutes.concat(getPathsOfRoute(file))
+    });      
+  }  
+  return Promise.all(allRoutes)
+        .then(routes =>Array.prototype.concat(...routes))
+        .then(files => files.filter((file => path.extname(file) === '.md')))
 }
 
-//console.log(getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/node_modules'))
-//console.log(getPathsOfRoute("E:/LABORATORIA/LIM009-fe-md-links/prueba"))
 
 
-const getLinksMd = (route) => {
-  let linksFilesMd = [];
-  const regExpGeneral = /normalmente/g;
-  route.forEach(path=>{
-    let fileContent =fs.readFileSync(path,'utf8')
-    console.log(fileContent.match(regExpGeneral))
-    
-  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//getPathsOfRoute("E:/LABORATORIA/LIM009-fe-md-links/prueba").then(res=>console.log(res))
+//getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/src/index.js').then(res=>console.log(res))
+
+
+/*
+
+ async function getPathsOfRoute(route){
+  let allRoutes = [];
+  const checkRoute = await checkRouteIsFile(route);  
+  if(checkRoute){  
+    allRoutes.push(route); 
+  }  
+  else{    
+    const readDirector  = await readDirectory(route)    
+    readDirector.forEach(paths=> {       
+      let file = path.join(route, paths)
+      allRoutes = allRoutes.concat(getPathsOfRoute(file))
+    });      
+  }  
+//return allRoutes
+  return Promise.all(allRoutes).then(res =>Array.prototype.concat(...res))
 }
-
-const ruta = getPathsOfRoute("E:/LABORATORIA/LIM009-fe-md-links/README.md")
-getLinksMd(ruta)
-
+*/
+/*
+const miFuncion = new Promise((resolve,reject)=>{})
+miFuncion.then((res) => console.log(res))
+.catch((err) => console.log(err))
+async function miFuncionAsincrona(a, b) {
+  arr = []
+  const leerFuncion = await miFuncion();
+  const nuevoPaso = await leerFuncion.concat(=>)
+  const suma = await nuevoPaso.split
+}
+*/
