@@ -34,7 +34,7 @@ async function getPathsOfRoute(route){
     });
   }
 
-return allRoutes
+  return allRoutes
 }
 
 
