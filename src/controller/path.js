@@ -1,8 +1,8 @@
-//const path = require('path')
+// import path from 'path'
 
-import path from 'path'
+const path = require('path')
 
-export const validatePathAbsolute = (route) =>{
+const validatePathAbsolute = (route) =>{
     if(path.isAbsolute(route)){
       return route
     }else{
@@ -18,3 +18,4 @@ console.log(validatePathAbsolute('./index.js'))
 console.log(validatePathAbsolute("E:/LABORATORIA/LIM009-fe-md-links/src/index.js"))
 console.log(validatePathAbsolute("./index.js"))*/
 
+module.exports = validatePathAbsolute

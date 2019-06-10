@@ -1,7 +1,6 @@
 /*import fs from 'fs'
 import path from 'path'*/
 
-
 const fs = require('fs');
 const path = require('path')
 const fsPromises = fs.promises;
@@ -32,12 +31,10 @@ const getPathsOfRoute = async (route)=> {
         .then(files => files.filter((file => path.extname(file) === '.md')))
 }
 
-getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/prueba').then(res=>console.log(res))
+//getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/prueba').then(res=>console.log(res))
 
-
-/*
 module.exports = {
+  checkRouteIsFile,
   getPathsOfRoute,
-  readDirectory,
-  checkRouteIsFile
-}*/
+  readDirectory
+}

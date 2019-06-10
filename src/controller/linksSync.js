@@ -1,8 +1,8 @@
-const fs = require('fs');
+/*const fs = require('fs');
 const path = require('path');
-/*
+
 import fs from 'fs'         
-import path from 'path' */
+import path from 'path' 
 
  export const checkRouteIsFile = (route)  =>{
   return fs.statSync(route).isFile()
@@ -11,10 +11,10 @@ import path from 'path' */
 export const checkRouteIsDirectory = (route)  =>{
   return fs.statSync(route).isDirectory()
 }
-/*
+
 //console.log(checkRouteIsFile('/home/leslie/Documents/LIM009-fe-md-links/src/md-links/index.js'))
 //console.log(checkRouteIsDirectory("E:/LABORATORIA/LIM009-fe-md-links/src/md-links/index.js"))
-*/
+
  export const getPathsOfRoute = (route)=>{
   let allRoutes = []; 
   if(checkRouteIsFile(route)){    
@@ -47,5 +47,5 @@ const getLinksMd = (route) => {
 }
 
 const ruta = getPathsOfRoute("E:/LABORATORIA/LIM009-fe-md-links/README.md")
-getLinksMd(ruta)
+getLinksMd(ruta)*/
 
