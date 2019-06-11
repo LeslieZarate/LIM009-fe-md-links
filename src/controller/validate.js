@@ -2,17 +2,16 @@ const fetch = require("node-fetch");
 
 const validateLinks  = (arraylinks) =>{
   const prom = (link) => new Promise((resolve)=>{		
-			fetch(link.href)
+		fetch(link.href)
 			.then(res => {
-				link.code = res.status; console.log(link.code);
+				link.code = res.status; 
 				if(link.code >= 200 && link.code <= 400){
-					link.status = res.statusText ; console.log(link.status)
+					link.status = res.statusText ; 
 					resolve(link)
 				}else{
-					link.status = 'FAIL' ; console.log(link.status)
+					link.status = 'FAIL';
 					resolve(link)
-				}					 
-				
+				}				
 			})
 			.catch(error => {
 			  error = 'No es una URL válida';
@@ -21,10 +20,10 @@ const validateLinks  = (arraylinks) =>{
 				resolve(link)
 			})
 	});
-
-	const arrayPromises = arraylinks.map(prom)
-	return Promise.all(arrayPromises)
- }
+	const arrayPromises = arraylinks.map(prom);
+	const result = Promise.all(arrayPromises);
+	return result
+}
 
 
 const obj = [

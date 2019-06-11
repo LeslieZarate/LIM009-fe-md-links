@@ -6,7 +6,8 @@ const path = require('path')
 const fsPromises = fs.promises;
 
 const checkRouteIsFile = (route) =>{
-  return fsPromises.stat(route).then(res=> res.isFile())
+  return fsPromises.stat(route) // retorna promesa con el objeto 
+  .then(res=> res.isFile())   // retorna el booleano con el valor 
 }
 
 const readDirectory = (route) => {
@@ -24,14 +25,18 @@ const getPathsOfRoute = async (route)=> {
     readDirector.forEach(paths=> {       
       let file = path.join(route, paths)
       allRoutes = allRoutes.concat(getPathsOfRoute(file))
-    });      
-  }  
-  return Promise.all(allRoutes)
-        .then(routes =>Array.prototype.concat(...routes))
-        .then(files => files.filter((file => path.extname(file) === '.md')))
+    });  
+  } 
+
+ // return allRoutes  
+  const promises = await Promise.all(allRoutes)
+  const resultRoutes  =  Array.prototype.concat(...promises)
+  const resultMd =  resultRoutes.filter((file => path.extname(file) === '.md'))
+
+  return resultMd
 }
 
-//getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/prueba').then(res=>console.log(res))
+getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/prueba').then(res=>console.log(res))
 
 module.exports = {
   checkRouteIsFile,

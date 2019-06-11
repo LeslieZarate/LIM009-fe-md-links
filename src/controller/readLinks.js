@@ -16,9 +16,7 @@ const getLinksMd = async (routes) => {
   for(let i=0; i<routes.length; i++) {
     let fileContent = await readFile(routes[i]) 
     const renderer = new myMarked.Renderer();
-    renderer.link = (href, title, text) => {   
-    return  linksFilesMd.push({href: href, text:text , file : routes[i]})    
-    }
+    renderer.link = (href, title, text) => linksFilesMd.push({href: href, text:text , file : routes[i]})  
     myMarked(fileContent, { renderer: renderer });
   };
   return linksFilesMd
@@ -74,7 +72,6 @@ const getLinksMd = async (routes) => {
     renderer.link = (href, title, text) => {   
       return {href: href, text:text , file : paths}
     }
-
     myMarked(fileContent, { renderer: renderer });
   }))
   console.log((await linksFilesMd))
