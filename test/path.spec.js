@@ -1,5 +1,5 @@
-import path from 'path'
-import {validatePathAbsolute} from "../src/controller/path.js";
+const path = require('path')
+const validatePathAbsolute = require('../src/controller/path')
 
 describe('validatePathAbsolute',()=>{
   it('Deberia ser una funcion',()=>{

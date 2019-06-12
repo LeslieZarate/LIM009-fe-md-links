@@ -29,6 +29,7 @@ const getPathsOfRoute = async (route)=> {
     const newArr = Array.prototype.concat(...arr); 
     return newArr
   } 
+
   return allRoutes
 }
 
@@ -40,6 +41,25 @@ module.exports = {
   getPathsOfRoute,
   readDirectory
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 const getPathsOfRoute = async (route) => {
