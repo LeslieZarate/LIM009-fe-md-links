@@ -1,14 +1,17 @@
-// import path from 'path'
+/// incluimos el modulo de path en nuestra aplicacion 
 
-const path = require('path')
+const path = require('path');
 
+// usamos el metodo isAbsolute para verificar si la ruta ingresada es absoluta 
 const validatePathAbsolute = (route) =>{
-    if(path.isAbsolute(route)){
-      return route
-    }else{
-      return path.resolve(route)
-    }
+  if(path.isAbsolute(route)){
+    return route
+  }else{
+    return path.resolve(route)
+  }
 }
+
+
 /*
 PRUEBAS :
 LINUX

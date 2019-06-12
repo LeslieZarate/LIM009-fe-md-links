@@ -8,6 +8,7 @@ const mdlinks = async(route,options)=>{
     try{
     const routeValidate = pathAboslute(route)
     const routeArr =  await fnLink.getPathsOfRoute(routeValidate)
+    
     const linksRoute = await fnRead.getLinksMd(routeArr)
     if(options.validate){
        //return  validateLinks(linksRoute)
