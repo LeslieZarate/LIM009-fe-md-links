@@ -1,5 +1,4 @@
-// incluimos los modulos necesarios para usar la aplicacion 
-
+// incluimos los modulos necesarios para usar la aplicacion
 const fs = require('fs');
 const path = require('path')
 const fsPromises = fs.promises; 
@@ -9,14 +8,43 @@ const checkRouteIsFile = (route) =>{
   .then(res=> res.isFile())        //retorna el booleano con el valor 
 }
 
-const readDirectory = (route) => {
+const readDirectory = (route) => {  // extrae en un array las rutas de un directorio 
   return fsPromises.readdir(route)
 }
 
+const getPathsOfRoute = async (route)=> {
+  let allRoutes = [];
+  const checkRoute = await checkRouteIsFile(route);  
+  if(checkRoute){  
+    allRoutes.push(route); 
+  }  
+  else{    
+    const readDirector  = await readDirectory(route)    
+    const promises = readDirector.map(paths=> {       
+      let file = path.join(route, paths)
+      return getPathsOfRoute(file)
+    });  
+
+    const arr  = await Promise.all(promises)
+    const newArr = Array.prototype.concat(...arr); 
+    return newArr
+  } 
+  return allRoutes
+}
+
+//getPathsOfRoute('E:/LABORATORIA/LIM009-fe-md-links/README.md').then(res=>console.log(res))
+///getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/src').then(res=>console.log(res))
+
+module.exports = {
+  checkRouteIsFile,
+  getPathsOfRoute,
+  readDirectory
+}
+
+/*
 const getPathsOfRoute = async (route) => {
   let allRoutes = [];
-  console.log(allRoutes)
-  const checkRoute = await checkRouteIsFile(route);   // cuando se resulve la promesa mostrara true o false segun sea el caso
+    const checkRoute = await checkRouteIsFile(route);   // cuando se resulve la promesa mostrara true o false segun sea el caso
     if(checkRoute){       
       const promise = new Promise((resolve)=>{
         resolve(route)
@@ -29,47 +57,14 @@ const getPathsOfRoute = async (route) => {
       let file = path.join(route, paths)
       return getPathsOfRoute(file)
       });   
-      const arr = await Promise.all(tot)
-      const newArr = Array.prototype.concat(...arr);
+      //console.log('tot'); console.log(tot)
+      const arr = await Promise.all(tot)  /// Resolver las promesas de las sub-carpetas
+      //console.log('arr');console.log(arr)
+      const newArr = Array.prototype.concat(...arr); // concatenamos totalas promesas
+     // console.log('newArr');console.log(newArr)
       return newArr
     }    
-    const total = await Promise.all(allRoutes);    
-    return total  
-}
-
-getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/src').then(res=>console.log(res))
-
-
-/*
-const promise = new Promise(async (resolve)=>{
-  const checkRoute = await checkRouteIsFile(route);   // cuando se resulve la promesa mostrara true o false segun sea el caso
-  let allRoutes = [];
-  if(checkRoute){             
-      allRoutes.push(route)
-      resolve(allRoutes)
-    }
-    else{
-    const readDirector  = await readDirectory(route)
-    let readDir = readDirector.map(paths=> {       
-      let file = path.join(route, paths)
-      return getPathsOfRoute(file)
-    });
-    const result = await Promise.all(readDir);
-         
-    resolve(result)
-  
-  }
-});
-
-return  promise */
-
-
-
-
-
-
-module.exports = {
-  checkRouteIsFile,
-  getPathsOfRoute,
-  readDirectory
-}
+    const total = await Promise.all(allRoutes); // Resuelve la promesas del array ALLROUTES
+    //console.log('total');  console.log(total);  
+    return total
+}*/
