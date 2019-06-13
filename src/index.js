@@ -1,14 +1,13 @@
-const pathAboslute = require('./controller/path')
-const fnLink = require('./controller/links')
-const fnRead = require('./controller/readLinks')
+const fnRoutes = require('./controller/paths')
+const fnLinks = require('./controller/links')
 const validateLinks = require('./controller/validate')
 
 
 const mdLinks = async (route, options) => {
 	try {
-		const routeValidate = pathAboslute(route)
-		const routeArr = await fnLink.getPathsOfRoute(routeValidate)
-		const linksRoute = await fnRead.getLinksMd(routeArr)
+		const routeValidate = fnRoutes.validatePathAbsolute(route)
+		const routeArr = await fnRoutes.getPathsOfRoute(routeValidate)
+		const linksRoute = await fnLinks.getLinksMd(routeArr)
 		if (options.validate) {
 			return validateLinks(linksRoute)
 		} else {
@@ -19,10 +18,10 @@ const mdLinks = async (route, options) => {
 		return err
 	}
 }
-/*
-mdLinks('E:/LABORATORIA/LIM009-fe-md-links/README.md', { validate: true })
+
+mdLinks('/home/leslie/Documents/LIM009-fe-md-links/README.md', { validate: false})
 	.then(res => console.log(res))
-	.catch(err => console.log(err))*/
+	.catch(err => console.log(err))
 
 module.exports = mdLinks
 

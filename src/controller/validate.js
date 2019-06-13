@@ -3,18 +3,17 @@ const validateLinks = (arraylinks) => {
 	const arrValidate = arraylinks.map(async link => {
 		try {
 			const response = await fetch(link)
-			link.code = response.status  // estado de respuesta http
-			if (link.code >= 200 && link.code < 400) {
-				link.status = response.statusText;
+			link.status = response.status  // estado de respuesta http(n°)
+				if (link.status >= 200 && link.status < 400) {
+			  link.statusText = response.statusText;				// ok /fail
 			} else {
-				link.status = 'FAIL';
+			  link.statusText = 'FAIL';
 			}
 			return link
 		}
 		catch (error) {
-			error = 'ERR_INTERNET_DISCONNECTED';
-			link.code = error;
-			link.status = 'ERR_INTERNET_DISCONNECTED'
+			link.status = error.code
+			link.statusText = 'FAIL'
 			return link
 		}
 	});
@@ -22,8 +21,8 @@ const validateLinks = (arraylinks) => {
 	return result
 }
 
-
 module.exports = validateLinks
+
 
 
 
@@ -44,19 +43,16 @@ module.exports = validateLinks
 /*
 
 const obj = [
-{ href: 'https://www.genbeta.com/desarrollo/node-js-y-npm',
-	text: 'Node.js y npm',
-	file: "E:/LABORATORIA/LIM009-fe-md-links/README.md"
-},
-{ href: 'https://github.com/Laboratoria/LIM009-data-lovers/blob/master/pokemongolive.com',
-  text: 'Node.js y npm',
- file: "E:/LABORATORIA/LIM009-fe-md-links/README.md" }]
-
-validateLinks(obj).then(res=>console.log(res))*/
-
-
-
-/*
+	{ href: 'https://www.genbeta.com/desarrollo/node-js-y-npm',
+		text: 'Node.js y npm',
+		file: "E:/LABORATORIA/LIM009-fe-md-links/README.md"
+	},
+	{ href: 'https://github.com/Laboratoria/LIM009-data-lovers/blob/master/pokemongolive.com',
+	  text: 'Node.js y npm',
+	 file: "E:/LABORATORIA/LIM009-fe-md-links/README.md" }]
+	
+	validateLinks(obj).then(res=>console.log(res))
+ 
 
 const validateLinks  = (arraylinks) =>{
   const prom = (link) => new Promise((resolve)=>{

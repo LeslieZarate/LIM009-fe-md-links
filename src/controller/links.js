@@ -1,54 +1,34 @@
-// incluimos los modulos necesarios para usar la aplicacion
 const fs = require('fs');
-const path = require('path')
+const path  = require('path')
 const fsPromises = fs.promises;
+const myMarked = require('marked');
 
-const checkRouteIsFile = (route) => {
-  return fsPromises.stat(route)       //retorna promesa con el objeto 
-    .then(res => res.isFile())        //retorna el booleano con el valor 
+const readFile = (route) => {
+  return fsPromises.readFile(route,'utf8')
 }
 
-const readDirectory = (route) => {  
-  return fsPromises.readdir(route)
+const filesMd = (routes) =>{
+  const routesMd = routes.filter(route => path.extname(route)===".md");
+  return routesMd
 }
 
-const getPathsOfRoute = async (route) => {
-  let allRoutes = [];
-  const checkRoute = await checkRouteIsFile(route);
-  if (checkRoute) {
-    allRoutes.push(route);
-  }
-  else {
-    const readDirector = await readDirectory(route)
-    const promises = readDirector.map(paths => {
-      let file = path.join(route, paths)
-      return getPathsOfRoute(file)
-    });
-
-    const arr = await Promise.all(promises)
-    const newArr = Array.prototype.concat(...arr);
-    return newArr
-  }
-
-  return allRoutes
+const getLinksMd = async (routes) => {
+  let linksFilesMd = [];
+  const routesMd = filesMd(routes)
+  for(let i=0; i<routesMd.length; i++) {
+    let fileContent = await readFile(routes[i]) 
+    const renderer = new myMarked.Renderer();
+    renderer.link = (href, title, text) => linksFilesMd.push({href: href, text:text , file : routesMd[i]})  
+    myMarked(fileContent, { renderer: renderer });
+  };
+  return linksFilesMd
 }
-
-//getPathsOfRoute('E:/LABORATORIA/LIM009-fe-md-links/README.md').then(res=>console.log(res))
-///getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/src').then(res=>console.log(res))
 
 module.exports = {
-  checkRouteIsFile,
-  getPathsOfRoute,
-  readDirectory
+  readFile,
+  filesMd,
+  getLinksMd
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -62,29 +42,56 @@ module.exports = {
 
 
 /*
-const getPathsOfRoute = async (route) => {
-  let allRoutes = [];
-    const checkRoute = await checkRouteIsFile(route);   // cuando se resulve la promesa mostrara true o false segun sea el caso
-    if(checkRoute){
-      const promise = new Promise((resolve)=>{
-        resolve(route)
-      })
-      allRoutes.push(promise)
+
+const getLinksMd = async (routes) => {
+    const routesMd = filesMd(routes)
+    const linksFilesMd = routesMd.map( async(paths)=>{
+    let linksMd = [];
+    let fileContent = await readFile(paths) 
+    const renderer = new myMarked.Renderer();
+    renderer.link = (href, title, text) => {   
+      linksMd.push({href: href, text:text , file : paths})
     }
-    else{
-      const readDirector = await readDirectory(route)
-      const tot = readDirector.map(paths=> {
-      let file = path.join(route, paths)
-      return getPathsOfRoute(file)
-      });
-      //console.log('tot'); console.log(tot)
-      const arr = await Promise.all(tot)  /// Resolver las promesas de las sub-carpetas
-      //console.log('arr');console.log(arr)
-      const newArr = Array.prototype.concat(...arr); // concatenamos totalas promesas
-     // console.log('newArr');console.log(newArr)
-      return newArr
-    }
-    const total = await Promise.all(allRoutes); // Resuelve la promesas del array ALLROUTES
-    //console.log('total');  console.log(total);
-    return total
-}*/
+    myMarked(fileContent, { renderer: renderer });
+    return linksMd
+  })
+
+  const arr = await Promise.all(linksFilesMd);
+  const result = Array.prototype.concat(...arr);
+  return result   
+}
+
+const getLinksMd = (routes) => {
+  const prom = (paths) => new Promise ((resolve)=>{
+    readFile(paths)
+    .then(fileContent =>{  
+      let linksFilesMd = [];
+      const renderer = new myMarked.Renderer();      
+      renderer.link = (href, title, text) => {  
+      linksFilesMd.push({href: href, text:text , file : paths}) 
+      }    
+      myMarked(fileContent, { renderer: renderer });
+      resolve(linksFilesMd)
+    })
+  });
+   
+ 
+  const promises =routes.map(pro);
+  const result = Promise.all(promises).then(links =>Array.prototype.concat(...links))
+
+  return result
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
