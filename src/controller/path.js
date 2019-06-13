@@ -1,5 +1,4 @@
 /// incluimos el modulo de path en nuestra aplicacion 
-
 const path = require('path');
 
 // usamos el metodo isAbsolute para verificar si la ruta ingresada es absoluta 
@@ -11,6 +10,8 @@ const validatePathAbsolute = (route) =>{
   }
 }
 
+module.exports = validatePathAbsolute;
+
 
 /*
 PRUEBAS :
@@ -20,5 +21,3 @@ console.log(validatePathAbsolute('./index.js'))
  WINDOWS 
 console.log(validatePathAbsolute("E:/LABORATORIA/LIM009-fe-md-links/src/index.js"))
 console.log(validatePathAbsolute("./index.js"))*/
-
-module.exports = validatePathAbsolute

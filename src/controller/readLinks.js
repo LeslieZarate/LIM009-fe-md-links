@@ -3,8 +3,6 @@ const path  = require('path')
 const fsPromises = fs.promises;
 const myMarked = require('marked');
 
-const fnLink = require('./links')
-
 const readFile = (route) => {
   return fsPromises.readFile(route,'utf8')
 }
@@ -13,7 +11,7 @@ const filesMd = (routes) =>{
   const routesMd = routes.filter(route => path.extname(route)===".md");
   return routesMd
 }
-/*
+
 const getLinksMd = async (routes) => {
   let linksFilesMd = [];
   const routesMd = filesMd(routes)
@@ -25,7 +23,18 @@ const getLinksMd = async (routes) => {
   };
   return linksFilesMd
 }
-*/
+
+module.exports = {
+  readFile,
+  getLinksMd
+}
+
+
+
+
+
+
+/*
 
 const getLinksMd = async (routes) => {
     const routesMd = filesMd(routes)
@@ -45,25 +54,6 @@ const getLinksMd = async (routes) => {
   return result   
 }
 
-
-fnLink.getPathsOfRoute('/home/leslie/Documents/LIM009-fe-md-links/prueba')
-.then(res=>{  
-   getLinksMd(res).then(res=>console.log(res))
-})
-
-
-
-module.exports = {
-  readFile,
-  getLinksMd
-}
-
-
-
-
-
-
-/*
 const getLinksMd = (routes) => {
   const prom = (paths) => new Promise ((resolve)=>{
     readFile(paths)

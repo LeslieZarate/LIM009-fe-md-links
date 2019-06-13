@@ -1,34 +1,34 @@
 // incluimos los modulos necesarios para usar la aplicacion
 const fs = require('fs');
 const path = require('path')
-const fsPromises = fs.promises; 
+const fsPromises = fs.promises;
 
-const checkRouteIsFile = (route) =>{
-  return fsPromises.stat(route)     //retorna promesa con el objeto 
-  .then(res=> res.isFile())        //retorna el booleano con el valor 
+const checkRouteIsFile = (route) => {
+  return fsPromises.stat(route)       //retorna promesa con el objeto 
+    .then(res => res.isFile())        //retorna el booleano con el valor 
 }
 
-const readDirectory = (route) => {  // extrae en un array las rutas de un directorio 
+const readDirectory = (route) => {  
   return fsPromises.readdir(route)
 }
 
-const getPathsOfRoute = async (route)=> {
+const getPathsOfRoute = async (route) => {
   let allRoutes = [];
-  const checkRoute = await checkRouteIsFile(route);  
-  if(checkRoute){  
-    allRoutes.push(route); 
-  }  
-  else{    
-    const readDirector  = await readDirectory(route)    
-    const promises = readDirector.map(paths=> {       
+  const checkRoute = await checkRouteIsFile(route);
+  if (checkRoute) {
+    allRoutes.push(route);
+  }
+  else {
+    const readDirector = await readDirectory(route)
+    const promises = readDirector.map(paths => {
       let file = path.join(route, paths)
       return getPathsOfRoute(file)
-    });  
+    });
 
-    const arr  = await Promise.all(promises)
-    const newArr = Array.prototype.concat(...arr); 
+    const arr = await Promise.all(promises)
+    const newArr = Array.prototype.concat(...arr);
     return newArr
-  } 
+  }
 
   return allRoutes
 }
@@ -65,26 +65,26 @@ module.exports = {
 const getPathsOfRoute = async (route) => {
   let allRoutes = [];
     const checkRoute = await checkRouteIsFile(route);   // cuando se resulve la promesa mostrara true o false segun sea el caso
-    if(checkRoute){       
+    if(checkRoute){
       const promise = new Promise((resolve)=>{
         resolve(route)
       })
-      allRoutes.push(promise)      
+      allRoutes.push(promise)
     }
     else{
       const readDirector = await readDirectory(route)
-      const tot = readDirector.map(paths=> {       
+      const tot = readDirector.map(paths=> {
       let file = path.join(route, paths)
       return getPathsOfRoute(file)
-      });   
+      });
       //console.log('tot'); console.log(tot)
       const arr = await Promise.all(tot)  /// Resolver las promesas de las sub-carpetas
       //console.log('arr');console.log(arr)
       const newArr = Array.prototype.concat(...arr); // concatenamos totalas promesas
      // console.log('newArr');console.log(newArr)
       return newArr
-    }    
+    }
     const total = await Promise.all(allRoutes); // Resuelve la promesas del array ALLROUTES
-    //console.log('total');  console.log(total);  
+    //console.log('total');  console.log(total);
     return total
 }*/
