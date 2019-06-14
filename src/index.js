@@ -19,9 +19,10 @@ const mdLinks = async (route, options) => {
 	}
 }
 
-mdLinks('/home/leslie/Documents/LIM009-fe-md-links/README.md', { validate: false})
+/*
+mdLinks('E:/LABORATORIA/LIM009-fe-md-links/prueba', { validate: true})
 	.then(res => console.log(res))
-	.catch(err => console.log(err))
+	.catch(err => console.log(err))*/
 
 module.exports = mdLinks
 

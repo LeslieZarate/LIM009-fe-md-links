@@ -35,11 +35,6 @@ module.exports = validateLinks
 
 
 
-
-
-
-
-
 /*
 
 const obj = [
