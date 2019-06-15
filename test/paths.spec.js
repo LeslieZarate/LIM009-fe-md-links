@@ -2,7 +2,7 @@ const path = require('path');
 const fn = require('../src/controller/paths');
 
 const arrFile = [path.resolve('./prueba/prueba.md')];
-const arrFolder = [path.resolve('./prueba/contenido/app.js'),path.resolve('./prueba/contenido/contenido.md'),path.resolve('./prueba/contenido/index.html'),];
+const arrFolder = [path.resolve('./prueba/contenido/app.js'), path.resolve('./prueba/contenido/contenido.md'), path.resolve('./prueba/contenido/index.html'),];
 
 describe('validatePathAbsolute', () => {
 	it('Deberia ser una funcion', () => {
@@ -43,7 +43,7 @@ describe('readDirectory', () => {
 	});
 
 	it('Deberia retornar un arry de los archivos de la carpeta ', (done) => {
-		const arrfiles = ['app.js', 'contenido.md','index.html'];
+		const arrfiles = ['app.js', 'contenido.md', 'index.html'];
 		fn.readDirectory(path.resolve('./prueba/contenido')).then(result => {
 			expect(result).toEqual(arrfiles);
 			done()

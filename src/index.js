@@ -1,7 +1,6 @@
-const fnRoutes = require('./controller/paths')
-const fnLinks = require('./controller/links')
-const validateLinks = require('./controller/validate')
-
+const fnRoutes = require('./controller/paths');
+const fnLinks = require('./controller/links');
+const validateLinks = require('./controller/validate');
 
 const mdLinks = async (route, options) => {
 	try {
@@ -15,6 +14,7 @@ const mdLinks = async (route, options) => {
 		}
 	}
 	catch (err) {
+		err = `ENOENT: no such file or directory,${route}`;
 		return err
 	}
 }

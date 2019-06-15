@@ -26,11 +26,6 @@ const arrLinksMd = [
 		file: path.resolve('./prueba/prueba.md')
 	},
 	{
-		href: '',
-		text: 'promise-it-wont-hurt',
-		file: path.resolve('./prueba/prueba.md')
-	},
-	{
 		href: 'https://github.com/Laboratoria/LIM009-data-lovers/blob/master/pokemongolive.com',
 		text: 'Github-pokemon',
 		file: path.resolve('./prueba/prueba.md')

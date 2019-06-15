@@ -12,6 +12,7 @@ const validateLinks = (arraylinks) => {
 			return link
 		}
 		catch (error) {
+			
 			link.status = error.code
 			link.statusText = 'FAIL'
 			return link
@@ -23,32 +24,19 @@ const validateLinks = (arraylinks) => {
 
 module.exports = validateLinks
 
-
-
-
-
-
-
-
-
-
-
-
-
 /*
-
 const obj = [
 	{ href: 'https://www.genbeta.com/desarrollo/node-js-y-npm',
 		text: 'Node.js y npm',
 		file: "E:/LABORATORIA/LIM009-fe-md-links/README.md"
 	},
-	{ href: 'https://github.com/Laboratoria/LIM009-data-lovers/blob/master/pokemongolive.com',
+	{ href: 'http://ruta-inexistente',
 	  text: 'Node.js y npm',
 	 file: "E:/LABORATORIA/LIM009-fe-md-links/README.md" }]
 	
-	validateLinks(obj).then(res=>console.log(res))
+	validateLinks(obj).then(res=>console.log(res)).catch(err=>console.log(err))
  
-
+/*
 const validateLinks  = (arraylinks) =>{
   const prom = (link) => new Promise((resolve)=>{
 		fetch(link.href)
