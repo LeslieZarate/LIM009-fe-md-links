@@ -15,7 +15,7 @@ const mdLinksCli = async (path, options) => {
 			result.forEach(elemet => {
 				!options.validate
 					? resultMdlinks +=`${elemet.file} ${elemet.href} ${elemet.text.substring(0, 50)}\n`
-					: resultMdlinks +=`${elemet.status} ${elemet.statusText} ${elemet.file} ${elemet.href} ${elemet.text.substring(0, 50)}\n`
+					: resultMdlinks +=`${elemet.file} ${elemet.href} ${elemet.text.substring(0, 50)} ${elemet.status} ${elemet.statusText}\n`
 			})
 		}
 		return resultMdlinks

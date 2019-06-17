@@ -96,7 +96,7 @@ describe('mdLinks', () => {
 	});
 	it('deberia retornar un nuevo array validando los links', (done) => {
 		mdLinks(path.resolve('./prueb/prueba.md'), { validate: true }).then(result => {
-			expect(result).toBe("ENOENT: no such file or directory,E:\\LABORATORIA\\LIM009-fe-md-links\\prueb\\prueba.md")
+			expect(result).toBe(`ENOENT: no such file or directory,${path.resolve('./prueb/prueba.md')}`)
 			done()
 		})
 	});

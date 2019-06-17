@@ -19,9 +19,10 @@ const getLinksMd = async (routes) => {
     let fileContent = await readFile(paths)
     const renderer = new myMarked.Renderer();
     renderer.link = (href, title, text) => {
-      linksMd.push({ href: href, text: text, file: paths })
+      return linksMd.push({ href: href, text: text, file: paths })
     }
-    myMarked(fileContent, { renderer: renderer });
+    console.log(
+    myMarked(fileContent, { renderer: renderer }));
     return linksMd
   });
   const arr = await Promise.all(linksFilesMd);
@@ -35,6 +36,7 @@ module.exports = {
   getLinksMd
 }
 
+getLinksMd([path.resolve('./prueba/file.md')]).then(res=>console.log(res))
 
 
 
