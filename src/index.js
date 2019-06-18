@@ -14,8 +14,6 @@ const mdLinks = async (route, options) => {
 			} else {
 				return linksRoute
 			}
-		}else{
-			return []
 		}		
 	}
 	catch (err) {

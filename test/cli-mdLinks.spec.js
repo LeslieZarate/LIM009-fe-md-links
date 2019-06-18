@@ -34,10 +34,10 @@ describe('Cli md-links',()=>{
 		});		
 	});
 
-	it('Deberia retornar un mensaje de error ',(done)=>{
+	/*it('Deberia retornar un mensaje de error ',(done)=>{
 		mdLinksCli(path.resolve('./prueba/fie.md'), { validate:true}).then(result=>{
 		    expect(result).toBe(`ENOENT: no such file or directory : \n${path.resolve('./prueba/fie.md')}`)
 			done()
 		});		
-	});
+	});*/
 });
