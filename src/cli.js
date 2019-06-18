@@ -14,14 +14,17 @@ const optionsCli = (arrOptions) => {
 			options.stats = true;
 		} else if ((opts === '--validate' || opts === '-v') && (opts = '--stats' || opts === '-s')) {
 			options.validate = true;
-			options.stats = true
+			options.stats = true;
 		}
 		else {
-			console.log('options no existe')
+			console.log('options no existe');
 		}
 	});
 	return options
 }
-
-const options = optionsCli(optionsText)
-mdLinksCli(path, options).then(res=>console.log(res)).catch(err =>console.log(err))
+if(args.length > 0){
+	const options = optionsCli(optionsText)
+	mdLinksCli(path, options).then(res=>console.log(res)).catch(err =>console.log(err))
+}else{
+	console.log('Ingresa una Ruta')
+}

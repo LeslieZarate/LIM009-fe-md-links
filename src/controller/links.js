@@ -13,13 +13,12 @@ const filesMd = (routes) => {
 }
 
 const getLinksMd = async (routes) => {
-  const routesMd = filesMd(routes)
-  const linksFilesMd = routesMd.map(async (paths) => {
+  const linksFilesMd = routes.map(async (paths) => {
     let linksMd = [];
     let fileContent = await readFile(paths)
     const renderer = new myMarked.Renderer();
     renderer.link = (href, title, text) => {
-      return linksMd.push({ href: href, text: text, file: paths })
+      linksMd.push({ href: href, text: text, file: paths })
     }
     myMarked(fileContent, { renderer: renderer });
     return linksMd
@@ -34,66 +33,3 @@ module.exports = {
   filesMd,
   getLinksMd
 }
-
-//getLinksMd([path.resolve('./prueba/file.md')]).then(res=>console.log(res))
-
-
-
-
-
-
-
-
-
-
-
-/*
-const getLinksMd = async (routes) => {
-  let linksFilesMd = [];
-  const routesMd = filesMd(routes)
-  for(let i=0; i<routesMd.length; i++) {
-    let fileContent = await readFile(routes[i])
-    const renderer = new myMarked.Renderer();
-    renderer.link = (href, title, text) => linksFilesMd.push({href: href, text:text , file : routesMd[i]})
-    myMarked(fileContent, { renderer: renderer });
-  };
-  return linksFilesMd
-}
-
-
-
-
-const getLinksMd = (routes) => {
-  const prom = (paths) => new Promise ((resolve)=>{
-    readFile(paths)
-    .then(fileContent =>{
-      let linksFilesMd = [];
-      const renderer = new myMarked.Renderer();
-      renderer.link = (href, title, text) => {
-      linksFilesMd.push({href: href, text:text , file : paths})
-      }
-      myMarked(fileContent, { renderer: renderer });
-      resolve(linksFilesMd)
-    })
-  });
-
-
-  const promises =routes.map(pro);
-  const result = Promise.all(promises).then(links =>Array.prototype.concat(...links))
-
-  return result
-}
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-

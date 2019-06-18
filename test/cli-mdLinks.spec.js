@@ -22,7 +22,6 @@ describe('Cli md-links',()=>{
 
 	it('Deberia retornar uns lista de los links ',(done)=>{
 		mdLinksCli(path.resolve('./prueba/file.md'), {}).then(result=>{
-			console.log(result)
 			expect(result).toBe(`${path.resolve('./prueba/file.md')} https://es.yahoo.com/ Yahoo\n`)
 			done()
 		});		
