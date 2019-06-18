@@ -14,7 +14,7 @@ const mdLinks = async (route, options) => {
 		}
 	}
 	catch (err) {
-		err = `ENOENT: no such file or directory,${route}`;
+		//err = `ENOENT: no such file or directory,${route}`;
 		return err
 	}
 }

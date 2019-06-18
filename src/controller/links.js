@@ -21,8 +21,7 @@ const getLinksMd = async (routes) => {
     renderer.link = (href, title, text) => {
       return linksMd.push({ href: href, text: text, file: paths })
     }
-    console.log(
-    myMarked(fileContent, { renderer: renderer }));
+    myMarked(fileContent, { renderer: renderer });
     return linksMd
   });
   const arr = await Promise.all(linksFilesMd);
@@ -36,7 +35,7 @@ module.exports = {
   getLinksMd
 }
 
-getLinksMd([path.resolve('./prueba/file.md')]).then(res=>console.log(res))
+//getLinksMd([path.resolve('./prueba/file.md')]).then(res=>console.log(res))
 
 
 
