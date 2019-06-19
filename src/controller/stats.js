@@ -7,7 +7,7 @@ const statsLinks = (arraysLinks) => {
   const uniqueHref = [...new Set(arrayHref)];  
   stats.unique = uniqueHref.length
   // Links Rotos  solo en caso de que el array se haya validado
-  if (arraysLinks.length !== 0 && arraysLinks[0].hasOwnProperty('statusText')) {
+  if (arraysLinks.length > 0 && arraysLinks[0].hasOwnProperty('statusText')) {
     const brokenlinks = arraysLinks.filter(link => link.statusText === 'FAIL');
     stats.broken = brokenlinks.length;
   }

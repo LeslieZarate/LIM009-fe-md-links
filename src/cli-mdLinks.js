@@ -12,6 +12,7 @@ const mdLinksCli = async (path, options) => {
 		}
 		else {
 			const result = await mdLinks(path, options)
+			console.log(result)
 			result.forEach(elemet => {
 				!options.validate
 					? resultMdlinks +=`${elemet.file} ${elemet.href} ${elemet.text.substring(0, 50)}\n`
@@ -21,7 +22,7 @@ const mdLinksCli = async (path, options) => {
 		return resultMdlinks
 	}
 	catch(err){
-		err = `ENOENT: no such file or directory : \n${path}`
+		//err = `ENOENT: no such file or directory : \n${path}`
 		return err
 	}
 	
