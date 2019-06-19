@@ -7,66 +7,11 @@ Libreria para analizar archivos markdown ,te permitira extraer sus links ,mostra
 ## Homepage
 [GitHub Leslie Zarate](https://github.com/LeslieZarate/LIM009-fe-md-links)
 
-## Project 
 
-El proyecto se realizó durante un periodo de 3 semanas, utilizando la metodología scrum.
-En trabajo en base a 4 historias de uso, y tareas enfocadas al cumplimiento de éstas, las cuales se encuentra en [Github Project](https://github.com/LeslieZarate/LIM009-fe-md-links/projects/1)
-
-## Instalación y Uso
+## Instalación 
 - Instalar vía `npm install --global https://github.com/LeslieZarate/LIM009-fe-md-links`
 
-## Diagrama de Flujo
-Diagrama del algoritmo de la funcion principal para implementado la solución al problema.
-
-![Diagrama de flujo de funcion principal](assets/DF-parte1.png)
-![Diagrama de flujo de funcion recursiva  para extraccion de rutas de  una carpeta](assets/DF-parte2.png)
-
-
-
-## `mdLinks(path, options)`
-
-### Argumentos
-
-- `path`: Ruta absoluta o relativa al archivo o directorio.
-- `options`: Un objeto con las siguientes propiedades:
-  * `validate`: Booleano que determina si se desea validar los links
-    encontrados.
-
-### Valor de retorno
-
-La función retorna una promesa (`Promise`) que resuelve a un arreglo
-(`Array`) de objetos (`Object`), donde cada objeto representa un link y contiene
-las siguientes propiedades:
-
-- `href`: URL encontrada.
-- `text`: Texto que aparecía dentro del link (`<a>`).
-- `file`: Ruta del archivo donde se encontró el link.
-
-### Ejemplo
-
-```js
-const mdLinks = require("md-links");
-
-mdLinks("./some/example.md")
-  .then(links => {
-    // => [{ href, text, file }]
-  })
-  .catch(console.error);
-
-mdLinks("./some/example.md", { validate: true })
-  .then(links => {
-    // => [{ href, text, file, status, ok }]
-  })
-  .catch(console.error);
-
-mdLinks("./some/dir")
-  .then(links => {
-    // => [{ href, text, file }]
-  })
-  .catch(console.error);
-```
-
-## CLI (Command Line Interface - Interfaz de Línea de Comando)
+##  Uso CLI (Command Line Interface - Interfaz de Línea de Comando)
 
 El ejecutable de la aplicación se ejecuta de la siguiente
 manera a través de la terminal:
@@ -125,6 +70,63 @@ Unique: 3
 Broken: 1
 ```
 
+
+## Documentación técnica de la librería
+
+El proyecto se realizó durante un periodo de 3 semanas, utilizando la metodología scrum.
+En trabajo en base a 4 historias de usuario, y una lsita de tareas enfocadas en cada historia de usuario, las cuales se encuentra en [Github Project](https://github.com/LeslieZarate/LIM009-fe-md-links/projects/1)
+
+## Diagrama de Flujo
+Diagrama del algoritmo de la funcion principal para implementado la solución al problema.
+
+![Diagrama de flujo de función principal](assets/DF-parte1.png)
+![Diagrama de flujo de función recursiva](assets/DF-parte2.png)
+
+
+## `mdLinks(path, options)`
+
+### Argumentos
+
+- `path`: Ruta absoluta o relativa al archivo o directorio.
+- `options`: Un objeto con las siguientes propiedades:
+  * `validate`: Booleano que determina si se desea validar los links
+    encontrados.
+
+### Valor de retorno
+
+La función retorna una promesa (`Promise`) que resuelve a un arreglo
+(`Array`) de objetos (`Object`), donde cada objeto representa un link y contiene
+las siguientes propiedades:
+
+- `href`: URL encontrada.
+- `text`: Texto que aparecía dentro del link (`<a>`).
+- `file`: Ruta del archivo donde se encontró el link.
+
+### Ejemplo
+
+```js
+const mdLinks = require("md-links");
+
+mdLinks("./some/example.md")
+  .then(links => {
+    // => [{ href, text, file }]
+  })
+  .catch(console.error);
+
+mdLinks("./some/example.md", { validate: true })
+  .then(links => {
+    // => [{ href, text, file, status, ok }]
+  })
+  .catch(console.error);
+
+mdLinks("./some/dir")
+  .then(links => {
+    // => [{ href, text, file }]
+  })
+  .catch(console.error);
+```
+
+
 ## Tecnologías Utilizadas
 
 - JavaScript.
@@ -137,3 +139,9 @@ Broken: 1
 - [learnyounode](https://github.com/workshopper/learnyounode)
 - [how-to-npm](https://github.com/workshopper/how-to-npm)
 
+## Soft Skills
+Autoaprendizaje
+Pensamiento abstracto
+Solución de problemas
+Trabajo en equipo
+ 
