@@ -1,7 +1,7 @@
 const path = require('path')
 const fn = require('../src/controller/links')
 
-const arrFolder = [path.resolve('./prueba/contenido/app.js'), path.resolve('./prueba/contenido/contenido.md'), path.resolve('./prueba/contenido/index.html'),];
+const arrFolder = [path.resolve('./prueba/contenido/app.js'), path.resolve('./prueba/contenido/contenido.md'), path.resolve('./prueba/contenido/index.html')];
 const arrMd = [path.resolve('./prueba/prueba.md'), path.resolve('./prueba/contenido/contenido.md')];
 
 const arrLinksMd = [
@@ -65,20 +65,17 @@ describe('readFile', () => {
 		fn.readFile(path.resolve('./prueba/notas.txt')).then((result) => {
 			expect(result).toBe('Markdown es un lenguaje de marcado ligero muy popular entre developers.')
 			done()
-		})
-	})
-
+		});
+	});
 });
 
 describe('filesMd', () => {
 	it('filesMd deberia ser una fucnion', () => {
 		expect(typeof fn.filesMd).toBe('function')
 	});
-
 	it('Deberia retornar un array con solo archivos .md', () => {
 		expect(fn.filesMd(arrFolder)).toEqual([path.resolve('./prueba/contenido/contenido.md')])
 	});
-
 });
 
 describe('getLinksMd', () => {
@@ -89,7 +86,7 @@ describe('getLinksMd', () => {
 		fn.getLinksMd(arrMd).then(result => {
 			expect(result).toEqual(arrLinksMd)
 			done()
-		})
+		});
 	});
 
 });

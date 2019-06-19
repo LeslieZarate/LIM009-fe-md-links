@@ -4,7 +4,7 @@ const validateLinks = (arraylinks) => {
 		try {
 			const response = await fetch(link)
 			link.status = response.status                           // estado de respuesta http(n°)
-				if (link.status >= 200 && link.status < 400) {
+			if (link.status >= 200 && link.status < 400) {
 			  link.statusText = response.statusText;			 	       // ok /fail
 			} else {
 			  link.statusText = 'FAIL';
@@ -23,3 +23,19 @@ const validateLinks = (arraylinks) => {
 }
 
 module.exports = validateLinks
+
+/*
+
+
+const obj = [{ href: 'https://github.com/stevekane/promise-it-wont-hurt',
+text: 'promise-it-wont-hurt',
+file: 'E:\\LABORATORIA\\LIM009-fe-md-links\\prueba\\prueba.md' },
+{ href:
+ 'https://github.com/Laboratoria/LIM009-data-lovers/blob/master/pokemongolive.com',
+text: 'Github-pokemon',
+file: 'E:\\LABORATORIA\\LIM009-fe-md-links\\prueba\\prueba.md' },
+{ href: 'https://es.yahoo.com/',
+text: 'Yahoo',
+file: 'E:\\LABORATORIA\\LIM009-fe-md-links\\prueba\\prueba.md' }]
+
+validateLinks(obj).then(res=>console.log(res)).catch(error =>console.log(error))*/

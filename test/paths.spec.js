@@ -1,9 +1,6 @@
 const path = require('path');
 const fn = require('../src/controller/paths');
 
-const arrFile = [path.resolve('./prueba/prueba.md')];
-const arrFolder = [path.resolve('./prueba/contenido/app.js'), path.resolve('./prueba/contenido/contenido.md'), path.resolve('./prueba/contenido/index.html'),];
-
 describe('validatePathAbsolute', () => {
 	it('Deberia ser una funcion', () => {
 		expect(typeof fn.validatePathAbsolute).toBe('function');
@@ -37,7 +34,7 @@ describe('checkRouteIsFile', () => {
 	});
 });
 
-describe('readDirectory', () => {
+describe('readDirectory', () => {	
 	it('Deberia ser una funcion', () => {
 		expect(typeof fn.readDirectory).toBe('function');
 	});
@@ -52,6 +49,9 @@ describe('readDirectory', () => {
 });
 
 describe('getPathsOfRoute', () => {
+	const arrFile = [path.resolve('./prueba/prueba.md')];
+	const arrFolder = [path.resolve('./prueba/contenido/app.js'), path.resolve('./prueba/contenido/contenido.md'), path.resolve('./prueba/contenido/index.html'),];
+
 	it('Deberia ser una funcion', () => {
 		expect(typeof fn.getPathsOfRoute).toBe('function');
 	});
