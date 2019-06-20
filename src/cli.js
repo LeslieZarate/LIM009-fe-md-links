@@ -17,7 +17,7 @@ const optionsCli = (arrOptions) => {
 			options.stats = true;
 		}
 		else {
-			console.log('options no existe');
+			console.log('La opción no existe');
 		}
 	});
 	return options
