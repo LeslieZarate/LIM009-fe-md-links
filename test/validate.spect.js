@@ -51,6 +51,7 @@ const arrObjRes = [{
 	statusText: 'FAIL'
 }]
 
+
 describe('validate', () => {
 	it('deberia ser una funcion', () => {
 		expect(typeof validate).toBe('function')
@@ -61,7 +62,6 @@ describe('validate', () => {
 			done()
 		});
 	});
-
 	it('deberia retornar un nuevo array ', (done) => {
 		validate(arrObj).then(result => {
 			expect(result).toEqual(arrObjRes)

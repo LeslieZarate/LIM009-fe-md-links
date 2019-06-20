@@ -7,12 +7,11 @@ const mdLinksCli = async (path, options) => {
 			const result = await mdLinks(path, options)
 			const stats  = fnStatsLinks(result)
 			options.validate 
-				? resultMdlinks += `Total: ${stats.total} \nUnique: ${stats.unique} \nBroken: ${stats.broken}`
-				: resultMdlinks += `Total: ${stats.total} \nUnique: ${stats.unique}`
+				? resultMdlinks += `Total: ${stats.total}\nUnique: ${stats.unique}\nBroken: ${stats.broken}`
+				: resultMdlinks += `Total: ${stats.total}\nUnique: ${stats.unique}`
 		}
 		else {
 			const result = await mdLinks(path, options)
-			console.log(result)
 			result.forEach(elemet => {
 				!options.validate
 					? resultMdlinks +=`${elemet.file} ${elemet.href} ${elemet.text.substring(0, 50)}\n`
@@ -23,7 +22,7 @@ const mdLinksCli = async (path, options) => {
 	}
 	catch(err){
 		//err = `ENOENT: no such file or directory : \n${path}`
-		return err
+		return err.message
 	}
 	
 }
