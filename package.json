@@ -20,7 +20,7 @@
   "author": "Leslie Zarate",
   "license": "ISC",
   "bin": {
-    "md-links": "./src/cli.js"
+    "md-links": "src/cli.js"
   },
   "bugs": {
     "url": "https://github.com/LeslieZarate/LIM009-fe-md-links/issues"
