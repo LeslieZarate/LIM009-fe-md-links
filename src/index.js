@@ -15,9 +15,4 @@ const mdLinks = async (route, options) => {
 	}
 }
 
-
 module.exports = mdLinks
-
-/*mdLinks('./prueba', { validate: false})
-	.then(res => console.log(res))
-	.catch(err => console.log(err)) */
