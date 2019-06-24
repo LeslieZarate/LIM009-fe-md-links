@@ -21,7 +21,6 @@ const mdLinksCli = async (path, options) => {
 		return resultMdlinks
 	}
 	catch(err){
-		//err = `ENOENT: no such file or directory : \n${path}`
 		return err.message
 	}
 	

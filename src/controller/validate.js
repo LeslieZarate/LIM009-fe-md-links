@@ -24,19 +24,3 @@ const validateLinks = (arraylinks) => {
 
 module.exports = validateLinks
 
-/*
-const obj = [
-	
-{ href: 'https://github.com/stevekane/promise-it-wont-hurt',
-text: 'promise-it-wont-hurt',
-file: 'E:\\LABORATORIA\\LIM009-fe-md-links\\prueba\\prueba.md' },
-
-{ href:
- 'https://github.com/Laboratoria/LIM009-data-lovers/bpokemongolive.com',
-text: 'Github-pokemon',
-file: 'E:\\LABORATORIA\\LIM009-fe-md-links\\prueba\\prueba.md' },
-{ href: 'https://es.yahoo.com/',
-text: 'Yahoo',
-file: 'E:\\LABORATORIA\\LIM009-fe-md-links\\prueba\\prueba.md' }]
-
-validateLinks(obj).then(res=>console.log(res))/*.catch(error =>console.log(error))*/
