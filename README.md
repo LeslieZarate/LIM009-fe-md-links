@@ -9,7 +9,8 @@ Libreria para analizar archivos markdown ,te permitira extraer sus links ,mostra
 
 
 ## Instalación 
-- Instalar vía `npm install --global https://github.com/LeslieZarate/LIM009-fe-md-links`
+- Instalar de forma Gobal :  `npm install --global https://github.com/LeslieZarate/LIM009-fe-md-links`
+- Instalar de forma Local :  `npm install LeslieZarate/LIM009-fe-md-links`
 
 ##  Uso CLI (Command Line Interface - Interfaz de Línea de Comando)
 
