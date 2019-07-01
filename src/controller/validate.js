@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const validateLinks = (arraylinks) => {
+const validateLinks = async(arraylinks) => {
   const arrValidate = arraylinks.map(async link => {	
     try {	
       const response = await fetch(link.href);	
@@ -16,9 +16,7 @@ const validateLinks = (arraylinks) => {
       return link;
     }
   });
-
-  const result = Promise.all(arrValidate);
-  return result;
+  return Promise.all(arrValidate);
 };
 
 module.exports = validateLinks;

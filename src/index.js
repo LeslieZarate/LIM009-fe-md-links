@@ -7,7 +7,7 @@ const mdLinks = async(route, options) => {
   const routesArr = await fnRoutes.getPathsOfRoute(routeValidate); // un array archivos 
   const routesMd = fnLinks.filesMd(routesArr);
   const linksRoute = await fnLinks.getLinksMd(routesMd); // extraendo links [{},..,{}]]
-  if (options.validate) {
+  if (options && options.validate) {
     return validateLinks(linksRoute);
   } else {
     return linksRoute;

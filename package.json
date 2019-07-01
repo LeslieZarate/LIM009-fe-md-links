@@ -35,7 +35,7 @@
     "@babel/preset-env": "^7.4.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "eslint": "^5.10.0",
+    "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.1.2",
     "fetch-mock": "^7.3.3",
     "jest": "^23.6.0",

@@ -1,5 +1,23 @@
 const mdLinks = require('./index');
 const fnStatsLinks = require('./controller/stats');
+
+const optionsCli = (arrOptions) => {
+  const options = {};
+  arrOptions.forEach(opts => {
+    if (opts === '--validate' || opts === '-v') {
+      options.validate = true;
+    } else if (opts === '--stats' || opts === '-s') {
+      options.stats = true;
+    } else if ((opts === '--validate' || opts === '-v') && (opts = '--stats' || opts === '-s')) {
+      options.validate = true;
+      options.stats = true;
+    } else {
+      console.log(`La opción "${opts}" no existe `);
+    }
+  });
+  return options;
+};
+
 const mdLinksCli = async(path, options) => {
   try {
     let resultMdlinks = '';
@@ -23,4 +41,7 @@ const mdLinksCli = async(path, options) => {
   }
 };
 
-module.exports = mdLinksCli;
+module.exports = {
+  mdLinksCli,
+  optionsCli
+};

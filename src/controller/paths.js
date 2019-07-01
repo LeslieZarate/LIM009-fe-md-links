@@ -11,11 +11,10 @@ const validatePathAbsolute = (route) => {
   }
 };
 
-const checkRouteIsFile = (route) => {
-  return fsPromises.stat(route) // retorna promesa con el objeto 
-    .then(res => res.isFile()); // retorna el booleano con el valor 
+const checkRouteIsFile = async(route) => {
+  const result = await fsPromises.stat(route);
+  return result.isFile();
 };
-
 
 const readDirectory = (route) => {
   return fsPromises.readdir(route); // array de archivos y carpetas de un directorio

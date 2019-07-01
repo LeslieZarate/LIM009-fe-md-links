@@ -8,7 +8,7 @@ const readFile = (route) => {
 };
 
 const filesMd = (routes) => {
-  const routesMd = routes.filter(route => path.extname(route) === '.md');
+  const routesMd = routes.filter(route => path.extname(route).toLowerCase() === '.md');
   return routesMd;
 };
 
