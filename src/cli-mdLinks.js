@@ -12,7 +12,7 @@ const optionsCli = (arrOptions) => {
       options.validate = true;
       options.stats = true;
     } else {
-      console.log(`La opción "${opts}" no existe `);
+      console.log(`La opción "${opts}" no existe`);
     }
   });
   return options;

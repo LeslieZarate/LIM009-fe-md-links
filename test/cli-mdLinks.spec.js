@@ -51,3 +51,37 @@ describe('Cli md-links', ()=>{
     });		
   });
 });
+
+describe('Options cli', ()=>{
+  it('Deberia ser una funcion', ()=>{
+    expect(typeof fn.optionsCli).toBe('function');
+  });
+  it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['-v'])).toEqual({"validate":true});
+  });
+  it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['--validate'])).toEqual({"validate":true});
+  });
+ it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['-s'])).toEqual({"stats":true});
+  });
+  it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['--stats'])).toEqual({"stats":true});
+  });
+ it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['-v','-s'])).toEqual({"stats":true,"validate":true});
+  });
+  it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['--validate','--stats'])).toEqual({"stats":true,"validate":true});
+  });
+  it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['-v','--stats'])).toEqual({"stats":true,"validate":true});
+  });
+  it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['--validate','-s'])).toEqual({"stats":true,"validate":true});
+  });
+  it('Deberia ser una funcion', ()=>{
+    expect(fn.optionsCli(['-k'])).toEqual({});
+  });
+  
+});
