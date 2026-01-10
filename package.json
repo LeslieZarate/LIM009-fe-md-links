@@ -27,22 +27,22 @@
   },
   "homepage": "https://github.com/LeslieZarate/LIM009-fe-md-links#readme",
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
+    "@babel/cli": "^7.28.0",
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "@babel/plugin-transform-regenerator": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^30.0.5",
     "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.1.2",
     "fetch-mock": "^7.3.3",
-    "jest": "^23.6.0",
+    "jest": "^30.0.5",
     "regenerator-runtime": "^0.13.1"
   },
   "dependencies": {
-    "marked": "^0.6.2",
-    "node-fetch": "^2.6.0"
+    "marked": "^4.0.10",
+    "node-fetch": "^2.6.7"
   }
 }
